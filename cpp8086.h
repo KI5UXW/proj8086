@@ -66,7 +66,7 @@ class CPUregisters{
     uint16_t DS = 0; // Data Segment
 
     // Status Register
-    uint16_t Flags = 0b1111000000000000; // Flag Register
+    uint16_t Flags = 0b1111000000101010; // Flag Register
 
     public:
         // Fetching Register Values
