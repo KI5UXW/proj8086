@@ -4,6 +4,8 @@
 
 // https://en.wikipedia.org/wiki/Intel_8086
 // https://www.geeksforgeeks.org/electronics-engineering/types-of-registers-in-8086-microprocessor/
+// https://en.wikipedia.org/wiki/FLAGS_register
+
 
 // Defining our functions so we can define them out of order.
 class CPUregisters{
@@ -64,7 +66,7 @@ class CPUregisters{
     uint16_t DS = 0; // Data Segment
 
     // Status Register
-    uint16_t Flags = 0b0; // Flag Register
+    uint16_t Flags = 0b1111000000000000; // Flag Register
 
     public:
         // Fetching Register Values

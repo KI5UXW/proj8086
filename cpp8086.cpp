@@ -169,13 +169,175 @@ uint16_t CPUregisters::fetchDS(){
     return DS;
 }
 
-// Updating Flags
+// Updating & Fetching Flags
+void CPUregisters::updateCF(bool CF){
+    if (CF) {
+        Flags = Flags | 0b0000000000000001;
+    }
+    else {
+        Flags = Flags & ~0b0000000000000001;
+    }
 
+}
+
+bool CPUregisters::fetchCF(){
+    if ((Flags & 0b0000000000000001) == 0b0000000000000001){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updateAF(bool AF){
+    if (AF) {
+        Flags = Flags | 0b0000000000010000;
+    }
+    else {
+        Flags = Flags & ~0b0000000000010000;
+    }
+
+}
+
+bool CPUregisters::fetchAF(){
+    if ((Flags & 0b0000000000010000) == 0b0000000000010000){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updatePF(bool PF){
+    if (PF) {
+        Flags = Flags | 0b0000000000000100;
+    }
+    else {
+        Flags = Flags & ~0b0000000000000100;
+    }
+
+}
+
+bool CPUregisters::fetchPF(){
+    if ((Flags & 0b0000000000000100) == 0b0000000000000100){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updateZF(bool ZF){
+    if (ZF) {
+        Flags = Flags | 0b0000000001000000;
+    }
+    else {
+        Flags = Flags & ~0b0000000001000000;
+    }
+
+}
+
+bool CPUregisters::fetchZF(){
+    if ((Flags & 0b0000000001000000) == 0b0000000001000000){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updateSF(bool SF){
+    if (SF) {
+        Flags = Flags | 0b0000000010000000;
+    }
+    else {
+        Flags = Flags & ~0b0000000010000000;
+    }
+
+}
+
+bool CPUregisters::fetchSF(){
+    if ((Flags & 0b0000000010000000) == 0b0000000010000000){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updateOF(bool OF){
+    if (OF) {
+        Flags = Flags | 0b0000100000000000;
+    }
+    else {
+        Flags = Flags & ~0b0000100000000000;
+    }
+
+}
+
+bool CPUregisters::fetchOF(){
+    if ((Flags & 0b0000100000000000) == 0b0000100000000000){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updateTF(bool TF){
+    if (TF) {
+        Flags = Flags | 0b0000000100000000;
+    }
+    else {
+        Flags = Flags & ~0b0000000100000000;
+    }
+
+}
+
+bool CPUregisters::fetchTF(){
+    if ((Flags & 0b0000000100000000) == 0b0000000100000000){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updateIF(bool IF){
+    if (IF) {
+        Flags = Flags | 0b0000001000000000;
+    }
+    else {
+        Flags = Flags & ~0b0000001000000000;
+    }
+
+}
+
+bool CPUregisters::fetchIF(){
+    if ((Flags & 0b0000001000000000) == 0b0000001000000000){
+        return true;
+    }
+    return false;
+}
+
+void CPUregisters::updateDF(bool DF){
+    if (DF) {
+        Flags = Flags | 0b0000010000000000;
+    }
+    else {
+        Flags = Flags & ~0b0000010000000000;
+    }
+
+}
+
+bool CPUregisters::fetchDF(){
+    if ((Flags & 0b0000010000000000) == 0b0000010000000000){
+        return true;
+    }
+    return false;
+}
 
 
 int main() {
     MEMfile bankA;
     CPUregisters CPUA;
+
+    std::cout<<"Testing A"<<std::endl;
+    std::cout<<CPUA.fetchCF()<<std::endl;
+    CPUA.updateCF(true);
+    std::cout<<CPUA.fetchCF()<<std::endl;
+    CPUA.updateAF(true);
+    std::cout<<CPUA.fetchAF()<<std::endl;
+    CPUA.updateCF(false);
+    std::cout<<CPUA.fetchCF()<<std::endl;
+
+
     return 0;
 }
 
