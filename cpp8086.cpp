@@ -174,6 +174,7 @@ uint16_t CPUregisters::fetchDS(){
 
 
 int main() {
+    MEMfile bankA;
     CPUregisters CPUA;
     return 0;
 }

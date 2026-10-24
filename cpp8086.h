@@ -102,6 +102,10 @@ class CPUregisters{
         bool fetchSF();
         bool fetchOF();
 
+        bool fetchTF();
+        bool fetchIF();
+        bool fetchDF();
+
         // Updating Register Values
         void writeAX(uint16_t Rs);
         void writeAH(uint8_t Rs);
@@ -135,6 +139,10 @@ class CPUregisters{
         void updateZF(bool ZF);
         void updateSF(bool SF);
         void updateOF(bool OF);
+
+        void updateTF(bool TF);
+        void updateIF(bool IF);
+        void updateDF(bool DF);
 };
 
 #endif
