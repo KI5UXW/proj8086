@@ -104,7 +104,72 @@ void CPUregisters::writeBL(uint8_t Rs){
     BXbytes.BL = Rs;
 }
 
-// Defining Write & Fetch Commands for Index Registers
+// Defining Write & Fetch Commands for Index, Program, and Segment Registers
+void CPUregisters::updateSP(uint16_t Rs){
+    SP = Rs;
+}
+uint16_t CPUregisters::fetchSP(){
+    return SP;
+}
+
+void CPUregisters::updateBP(uint16_t Rs){
+    BP = Rs;
+}
+uint16_t CPUregisters::fetchBP(){
+    return BP;
+}
+
+void CPUregisters::updateSI(uint16_t Rs){
+    SI = Rs;
+}
+uint16_t CPUregisters::fetchSI(){
+    return SI;
+}
+
+void CPUregisters::updateDI(uint16_t Rs){
+    DI = Rs;
+}
+uint16_t CPUregisters::fetchDI(){
+    return DI;
+}
+
+void CPUregisters::updateIP(uint16_t Rs){
+    IP = Rs;
+}
+uint16_t CPUregisters::fetchIP(){
+    return IP;
+}
+
+void CPUregisters::updateES(uint16_t Rs){
+    ES = Rs;
+}
+uint16_t CPUregisters::fetchES(){
+    return ES;
+}
+
+void CPUregisters::updateCS(uint16_t Rs){
+    CS = Rs;
+}
+uint16_t CPUregisters::fetchCS(){
+    return CS;
+}
+
+void CPUregisters::updateSS(uint16_t Rs){
+    SS = Rs;
+}
+uint16_t CPUregisters::fetchSS(){
+    return SS;
+}
+
+void CPUregisters::updateDS(uint16_t Rs){
+    DS = Rs;
+}
+uint16_t CPUregisters::fetchDS(){
+    return DS;
+}
+
+// Updating Flags
+
 
 
 int main() {
