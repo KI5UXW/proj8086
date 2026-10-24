@@ -1,4 +1,5 @@
 #include "cpp8086.h"
+#include "memFile.cpp"
 #include <iostream>
 #include <cstdint>
 #include <string>
@@ -174,12 +175,6 @@ uint16_t CPUregisters::fetchDS(){
 
 int main() {
     CPUregisters CPUA;
-    uint16_t AXval = CPUA.fetchAX();
-    std::cout<<AXval<<std::endl;
-    uint16_t AXinput = 16;
-    CPUA.writeAX(AXinput);
-    AXval = CPUA.fetchAX();
-    std::cout<<AXval<<std::endl;
     return 0;
 }
 
