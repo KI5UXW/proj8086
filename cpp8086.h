@@ -2,6 +2,9 @@
 #define CPP8086_H
 #include <cstdint>
 
+// https://en.wikipedia.org/wiki/Intel_8086
+// https://www.geeksforgeeks.org/electronics-engineering/types-of-registers-in-8086-microprocessor/
+
 // Defining our functions so we can define them out of order.
 class CPUregisters{
     
@@ -43,6 +46,20 @@ class CPUregisters{
             uint8_t BL;
         } BXbytes;
     };
+
+    uint16_t SP = 0; // Stack Pointer
+    uint16_t BP = 0; // Base Pointer
+    uint16_t SI = 0; // Source Index
+    uint16_t DI = 0; // Destination Index
+
+    uint16_t IP = 0; // Instruction Pointer
+
+    uint16_t ES = 0; // Extra Segment
+    uint16_t CS = 0; // Code Segment
+    uint16_t SS = 0; // Stack Segment
+    uint16_t DS = 0; // Data Segment
+
+    uint16_t Flags = 0b0; // Flag Register
 
     public:
         // Fetching Register Values

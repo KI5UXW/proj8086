@@ -104,7 +104,7 @@ void CPUregisters::writeBL(uint8_t Rs){
     BXbytes.BL = Rs;
 }
 
-
+// Defining Write & Fetch Commands for Index Registers
 
 
 int main() {
