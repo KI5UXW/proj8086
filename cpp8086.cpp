@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
+#include <bits/stdc++.h>
 
 // Defining Write & Fetch Commands for the Main Registers
 uint16_t CPUregisters::fetchAX(){
@@ -323,20 +324,117 @@ bool CPUregisters::fetchDF(){
     return false;
 }
 
+uint16_t CPUregisters::fetchFlags(){
+    return Flags;
+}
+
+// Implementing Reset
+void CPUregisters::RESET(){
+    Flags = 0b1111000000101010;
+    uint16_t resetState = 0x0000;
+    uint16_t resetStateNot = 0xFFFF;
+    updateIP(resetState);
+    updateCS(resetStateNot);
+    updateDS(resetState);
+    updateSS(resetState);
+    updateES(resetState);
+    ISQ[0] = 0;
+    ISQ[1] = 0;
+    ISQ[2] = 0;
+    ISQ[3] = 0;
+    ISQ[4] = 0;
+    ISQ[5] = 0;
+
+}
+
+// Implementing 8086 ISA Instructions
+void CPUregisters::AAA(){
+    if ((AXbytes.AL > 9 || fetchAF() == true)){
+        AXbytes.AL = AXbytes.AL + 6;
+        AXbytes.AH = AXbytes.AH + 1;
+        updateAF(true);
+        updateCF(true);
+    } else {
+        updateAF(false);
+        updateCF(false);
+    }
+    // In both cases, clear the high nibble of AL.
+    AXbytes.AL = AXbytes.AL & 0b00001111;
+}
+
+void CPUregisters::AAD(){
+    AXbytes.AL = (AXbytes.AH * 10) + AXbytes.AL;
+    AXbytes.AH = 0;
+    if (AXbytes.AL == 0){
+        updateZF(true);
+    } else {
+        updateZF(false);
+    }
+    if ((AXbytes.AL & 0b10000000) != 0){
+        updateSF(true);
+    } else {
+        updateSF(false);
+    }
+    if ((__builtin_popcount(AXbytes.AL) % 2) == 0){
+        updatePF(true);
+    } else {
+        updatePF(false);
+    }
+}
+
+void CPUregisters::AAM(){
+    AXbytes.AH = (AXbytes.AL / 10);
+    AXbytes.AH = (AXbytes.AH % 10);
+    if (AXbytes.AL == 0){
+        updateZF(true);
+    } else {
+        updateZF(false);
+    }
+    if ((AXbytes.AL & 0b10000000) != 0){
+        updateSF(true);
+    } else {
+        updateSF(false);
+    }
+    if ((__builtin_popcount(AXbytes.AL) % 2) == 0){
+        updatePF(true);
+    } else {
+        updatePF(false);
+    }
+}
+
 
 int main() {
     MEMfile bankA;
     CPUregisters CPUA;
+    std::cout<<"Starting Flags: "<<std::bitset<16>(CPUA.fetchFlags())<<std::endl;
+    std::cout<<"AAA Test"<<std::endl;
+    uint16_t Rs = 0xAB12;
+    CPUA.writeAX(Rs);
+    std::cout<<std::hex<<CPUA.fetchAX()<<std::endl;
+    std::cout<<std::bitset<16>(CPUA.fetchFlags())<<std::endl;
+    CPUA.AAA();
+    std::cout<<std::hex<<CPUA.fetchAX()<<std::endl;
+    std::cout<<std::bitset<16>(CPUA.fetchFlags())<<"\n"<<std::endl;
 
-    std::cout<<"Testing A"<<std::endl;
-    std::cout<<CPUA.fetchCF()<<std::endl;
-    CPUA.updateCF(true);
-    std::cout<<CPUA.fetchCF()<<std::endl;
-    CPUA.updateAF(true);
-    std::cout<<CPUA.fetchAF()<<std::endl;
-    CPUA.updateCF(false);
-    std::cout<<CPUA.fetchCF()<<std::endl;
 
+    std::cout<<"AAD Test"<<std::endl;
+    Rs = 0xAB12;
+    CPUA.writeAX(Rs);
+    std::cout<<std::hex<<CPUA.fetchAX()<<std::endl;
+    std::cout<<std::bitset<16>(CPUA.fetchFlags())<<std::endl;
+    CPUA.AAD();
+    std::cout<<std::hex<<CPUA.fetchAX()<<std::endl;
+    std::cout<<std::bitset<16>(CPUA.fetchFlags())<<"\n"<<std::endl;
+    
+    std::cout<<"AAM Test"<<std::endl;
+    Rs = 0xAB12;
+    CPUA.writeAX(Rs);
+    std::cout<<std::hex<<CPUA.fetchAX()<<std::endl;
+    std::cout<<std::bitset<16>(CPUA.fetchFlags())<<std::endl;
+    CPUA.AAM();
+    std::cout<<std::hex<<CPUA.fetchAX()<<std::endl;
+    std::cout<<std::bitset<16>(CPUA.fetchFlags())<<"\n"<<std::endl;
+    
 
     return 0;
 }

@@ -5,6 +5,7 @@
 // https://en.wikipedia.org/wiki/Intel_8086
 // https://www.geeksforgeeks.org/electronics-engineering/types-of-registers-in-8086-microprocessor/
 // https://en.wikipedia.org/wiki/FLAGS_register
+// https://www.philadelphia.edu.jo/academics/qhamarsheh/uploads/emu8086.pdf
 
 
 // Defining our functions so we can define them out of order.
@@ -66,7 +67,9 @@ class CPUregisters{
     uint16_t DS = 0; // Data Segment
 
     // Status Register
-    uint16_t Flags = 0b1111000000101010; // Flag Register
+    uint16_t Flags = 0b1111000000101010; // Flag Register: CF (Carry), PF (Parity), AF (Auxiliary Carry), ZF (Zero), SF (Sign), OF (Overflow), TF (Trap), IF (Interrupt Enable), DF (Direction)
+
+    uint8_t ISQ[6] = {};
 
     public:
         // Fetching Register Values
@@ -135,6 +138,7 @@ class CPUregisters{
         void updateSS(uint16_t Rs);
         void updateDS(uint16_t Rs);
 
+        // Updating Flags
         void updateCF(bool CF);
         void updateAF(bool AF);
         void updatePF(bool PF);
@@ -145,6 +149,15 @@ class CPUregisters{
         void updateTF(bool TF);
         void updateIF(bool IF);
         void updateDF(bool DF);
+
+        // Implementing RESET
+        void RESET();
+
+        // Implementing 8086 ISA Instructions
+        void AAA();
+        void AAD();
+        void AAM();
+
 };
 
 #endif
