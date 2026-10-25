@@ -69,7 +69,11 @@ class CPUregisters{
     // Status Register
     uint16_t Flags = 0b1111000000101010; // Flag Register: CF (Carry), PF (Parity), AF (Auxiliary Carry), ZF (Zero), SF (Sign), OF (Overflow), TF (Trap), IF (Interrupt Enable), DF (Direction)
 
+    // Instruction Stream Queue
     uint8_t ISQ[6] = {};
+
+    //Bus Cycle Status Signals
+    uint8_t busStatus = 0b10100000;
 
     public:
         // Fetching Register Values
