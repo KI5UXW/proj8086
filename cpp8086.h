@@ -6,6 +6,7 @@
 // https://www.geeksforgeeks.org/electronics-engineering/types-of-registers-in-8086-microprocessor/
 // https://en.wikipedia.org/wiki/FLAGS_register
 // https://www.philadelphia.edu.jo/academics/qhamarsheh/uploads/emu8086.pdf
+// https://edge.edx.org/c4x/BITSPilani/EEE231/asset/8086_family_Users_Manual_1_.pdf
 
 
 // Defining our functions so we can define them out of order.
@@ -59,6 +60,8 @@ class CPUregisters{
 
     // Program Counter
     uint16_t IP = 0; // Instruction Pointer/Program Counter
+    // Stores the next addr. to be fetched by the BIU during normal operation.
+    // When IP is saved on the stack, it's automatically adjusted to point to the next instruction to be executed.
 
     // Segment Registers
     uint16_t ES = 0; // Extra Segment
@@ -66,14 +69,28 @@ class CPUregisters{
     uint16_t SS = 0; // Stack Segment
     uint16_t DS = 0; // Data Segment
 
-    // Status Register
+    // Flags/Status Register
     uint16_t Flags = 0b1111000000101010; // Flag Register: CF (Carry), PF (Parity), AF (Auxiliary Carry), ZF (Zero), SF (Sign), OF (Overflow), TF (Trap), IF (Interrupt Enable), DF (Direction)
+    // Refer to the documentation starting on Page 22.
+
 
     // Instruction Stream Queue
     uint8_t ISQ[6] = {};
 
-    //Bus Cycle Status Signals
+    // Bus Cycle Status Signals
     uint8_t busStatus = 0b10100000;
+
+    // Instruction Fetch & Execution 
+    uint8_t statusEU = 0; // 0 = NOP, 1 = Execute.
+    uint8_t statusBIU = 0; // 0 = Fetch, 1 = Read, 2 = Write.
+    //uint8_t statusBUS = 1; // 0 = Not Busy, 1 = Busy.
+    // Documentation Starting on Page 19.
+    // BIU for the 8086 usually gets two instructions per fetch.
+    // If fetching from an odd address, the BIU reads one byte and then goes back to even addresses.
+    // Usually, the EU doesn't have to wait for fetches as long as it has one byte. 
+    // If the EU transfers control, the BIU requests the queue and passes the first address immediately to the EU and then resumes filling the queue.
+    // The BIU will stop fetching if the EU requests memory or I/O or wait until an existing fetch is completed before the EU's bus request.
+
 
     public:
         // Fetching Register Values
@@ -156,6 +173,10 @@ class CPUregisters{
 
         // Implementing RESET
         void RESET();
+
+        //
+        uint8_t updateEU(uint8_t state); // 0 = NOP, 1 = Execute.
+        uint8_t updateBIU(uint8_t state); // 0 = Fetch, 1 = Read, 2 = Write.
 
         // Implementing 8086 ISA Instructions
         void AAA();
