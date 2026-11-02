@@ -10,7 +10,7 @@
 
 
 // Defining our functions so we can define them out of order.
-class CPUregisters{
+class CPU8086 {
     
     private:
 
@@ -174,7 +174,7 @@ class CPUregisters{
         // Implementing RESET
         void RESET();
 
-        //
+        // Implementing Bus Interface Unit & Execution Unit Controls.
         uint8_t updateEU(uint8_t state); // 0 = NOP, 1 = Execute.
         uint8_t updateBIU(uint8_t state); // 0 = Fetch, 1 = Read, 2 = Write.
 

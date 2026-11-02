@@ -6,172 +6,172 @@
 #include <bits/stdc++.h>
 
 // Defining Write & Fetch Commands for the Main Registers
-uint16_t CPUregisters::fetchAX(){
+uint16_t CPU8086::fetchAX(){
     return ((uint16_t)AXbytes.AH << 8) | AXbytes.AL;
 }
 
-uint8_t CPUregisters::fetchAH(){
+uint8_t CPU8086::fetchAH(){
     return AXbytes.AH;
 }
 
-uint8_t CPUregisters::fetchAL(){
+uint8_t CPU8086::fetchAL(){
     return AXbytes.AL;
 }
 
-void CPUregisters::writeAX(uint16_t Rs){
+void CPU8086::writeAX(uint16_t Rs){
     AXbytes.AH = ((uint16_t)Rs >> 8) & 0xFF;
     AXbytes.AL = ((uint16_t)Rs >> 0) & 0xFF;
 }
 
-void CPUregisters::writeAH(uint8_t Rs){
+void CPU8086::writeAH(uint8_t Rs){
     AXbytes.AH = Rs;
 }
 
-void CPUregisters::writeAL(uint8_t Rs){
+void CPU8086::writeAL(uint8_t Rs){
     AXbytes.AL = Rs;
 }
 
-uint16_t CPUregisters::fetchCX(){
+uint16_t CPU8086::fetchCX(){
     return ((uint16_t)CXbytes.CH << 8) | CXbytes.CL;
 }
 
-uint8_t CPUregisters::fetchCH(){
+uint8_t CPU8086::fetchCH(){
     return CXbytes.CH;
 }
 
-uint8_t CPUregisters::fetchCL(){
+uint8_t CPU8086::fetchCL(){
     return CXbytes.CL;
 }
 
-void CPUregisters::writeCX(uint16_t Rs){
+void CPU8086::writeCX(uint16_t Rs){
     CXbytes.CH = ((uint16_t)Rs >> 8) & 0xFF;
     CXbytes.CL = ((uint16_t)Rs >> 0) & 0xFF;
 }
 
-void CPUregisters::writeCH(uint8_t Rs){
+void CPU8086::writeCH(uint8_t Rs){
     CXbytes.CH = Rs;
 }
 
-void CPUregisters::writeCL(uint8_t Rs){
+void CPU8086::writeCL(uint8_t Rs){
     CXbytes.CL = Rs;
 }
 
-uint16_t CPUregisters::fetchDX(){
+uint16_t CPU8086::fetchDX(){
     return ((uint16_t)DXbytes.DH << 8) | DXbytes.DL;
 }
 
-uint8_t CPUregisters::fetchDH(){
+uint8_t CPU8086::fetchDH(){
     return DXbytes.DH;
 }
 
-uint8_t CPUregisters::fetchDL(){
+uint8_t CPU8086::fetchDL(){
     return DXbytes.DL;
 }
 
-void CPUregisters::writeDX(uint16_t Rs){
+void CPU8086::writeDX(uint16_t Rs){
     DXbytes.DH = ((uint16_t)Rs >> 8) & 0xFF;
     DXbytes.DL = ((uint16_t)Rs >> 0) & 0xFF;
 }
 
-void CPUregisters::writeDH(uint8_t Rs){
+void CPU8086::writeDH(uint8_t Rs){
     DXbytes.DH = Rs;
 }
 
-void CPUregisters::writeDL(uint8_t Rs){
+void CPU8086::writeDL(uint8_t Rs){
     DXbytes.DL = Rs;
 }
 
-uint16_t CPUregisters::fetchBX(){
+uint16_t CPU8086::fetchBX(){
     return ((uint16_t)BXbytes.BH << 8) | BXbytes.BL;
 }
 
-uint8_t CPUregisters::fetchBH(){
+uint8_t CPU8086::fetchBH(){
     return BXbytes.BH;
 }
 
-uint8_t CPUregisters::fetchBL(){
+uint8_t CPU8086::fetchBL(){
     return BXbytes.BL;
 }
 
-void CPUregisters::writeBX(uint16_t Rs){
+void CPU8086::writeBX(uint16_t Rs){
     BXbytes.BH = ((uint16_t)Rs >> 8) & 0xFF;
     BXbytes.BL = ((uint16_t)Rs >> 0) & 0xFF;
 }
 
-void CPUregisters::writeBH(uint8_t Rs){
+void CPU8086::writeBH(uint8_t Rs){
     BXbytes.BH = Rs;
 }
 
-void CPUregisters::writeBL(uint8_t Rs){
+void CPU8086::writeBL(uint8_t Rs){
     BXbytes.BL = Rs;
 }
 
 // Defining Write & Fetch Commands for Index, Program, and Segment Registers
-void CPUregisters::updateSP(uint16_t Rs){
+void CPU8086::updateSP(uint16_t Rs){
     SP = Rs;
 }
-uint16_t CPUregisters::fetchSP(){
+uint16_t CPU8086::fetchSP(){
     return SP;
 }
 
-void CPUregisters::updateBP(uint16_t Rs){
+void CPU8086::updateBP(uint16_t Rs){
     BP = Rs;
 }
-uint16_t CPUregisters::fetchBP(){
+uint16_t CPU8086::fetchBP(){
     return BP;
 }
 
-void CPUregisters::updateSI(uint16_t Rs){
+void CPU8086::updateSI(uint16_t Rs){
     SI = Rs;
 }
-uint16_t CPUregisters::fetchSI(){
+uint16_t CPU8086::fetchSI(){
     return SI;
 }
 
-void CPUregisters::updateDI(uint16_t Rs){
+void CPU8086::updateDI(uint16_t Rs){
     DI = Rs;
 }
-uint16_t CPUregisters::fetchDI(){
+uint16_t CPU8086::fetchDI(){
     return DI;
 }
 
-void CPUregisters::updateIP(uint16_t Rs){
+void CPU8086::updateIP(uint16_t Rs){
     IP = Rs;
 }
-uint16_t CPUregisters::fetchIP(){
+uint16_t CPU8086::fetchIP(){
     return IP;
 }
 
-void CPUregisters::updateES(uint16_t Rs){
+void CPU8086::updateES(uint16_t Rs){
     ES = Rs;
 }
-uint16_t CPUregisters::fetchES(){
+uint16_t CPU8086::fetchES(){
     return ES;
 }
 
-void CPUregisters::updateCS(uint16_t Rs){
+void CPU8086::updateCS(uint16_t Rs){
     CS = Rs;
 }
-uint16_t CPUregisters::fetchCS(){
+uint16_t CPU8086::fetchCS(){
     return CS;
 }
 
-void CPUregisters::updateSS(uint16_t Rs){
+void CPU8086::updateSS(uint16_t Rs){
     SS = Rs;
 }
-uint16_t CPUregisters::fetchSS(){
+uint16_t CPU8086::fetchSS(){
     return SS;
 }
 
-void CPUregisters::updateDS(uint16_t Rs){
+void CPU8086::updateDS(uint16_t Rs){
     DS = Rs;
 }
-uint16_t CPUregisters::fetchDS(){
+uint16_t CPU8086::fetchDS(){
     return DS;
 }
 
 // Updating & Fetching Flags
-void CPUregisters::updateCF(bool CF){
+void CPU8086::updateCF(bool CF){
     if (CF) {
         Flags = Flags | 0b0000000000000001;
     }
@@ -181,14 +181,14 @@ void CPUregisters::updateCF(bool CF){
 
 }
 
-bool CPUregisters::fetchCF(){
+bool CPU8086::fetchCF(){
     if ((Flags & 0b0000000000000001) == 0b0000000000000001){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updateAF(bool AF){
+void CPU8086::updateAF(bool AF){
     if (AF) {
         Flags = Flags | 0b0000000000010000;
     }
@@ -198,14 +198,14 @@ void CPUregisters::updateAF(bool AF){
 
 }
 
-bool CPUregisters::fetchAF(){
+bool CPU8086::fetchAF(){
     if ((Flags & 0b0000000000010000) == 0b0000000000010000){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updatePF(bool PF){
+void CPU8086::updatePF(bool PF){
     if (PF) {
         Flags = Flags | 0b0000000000000100;
     }
@@ -215,14 +215,14 @@ void CPUregisters::updatePF(bool PF){
 
 }
 
-bool CPUregisters::fetchPF(){
+bool CPU8086::fetchPF(){
     if ((Flags & 0b0000000000000100) == 0b0000000000000100){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updateZF(bool ZF){
+void CPU8086::updateZF(bool ZF){
     if (ZF) {
         Flags = Flags | 0b0000000001000000;
     }
@@ -232,14 +232,14 @@ void CPUregisters::updateZF(bool ZF){
 
 }
 
-bool CPUregisters::fetchZF(){
+bool CPU8086::fetchZF(){
     if ((Flags & 0b0000000001000000) == 0b0000000001000000){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updateSF(bool SF){
+void CPU8086::updateSF(bool SF){
     if (SF) {
         Flags = Flags | 0b0000000010000000;
     }
@@ -249,14 +249,14 @@ void CPUregisters::updateSF(bool SF){
 
 }
 
-bool CPUregisters::fetchSF(){
+bool CPU8086::fetchSF(){
     if ((Flags & 0b0000000010000000) == 0b0000000010000000){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updateOF(bool OF){
+void CPU8086::updateOF(bool OF){
     if (OF) {
         Flags = Flags | 0b0000100000000000;
     }
@@ -266,14 +266,14 @@ void CPUregisters::updateOF(bool OF){
 
 }
 
-bool CPUregisters::fetchOF(){
+bool CPU8086::fetchOF(){
     if ((Flags & 0b0000100000000000) == 0b0000100000000000){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updateTF(bool TF){
+void CPU8086::updateTF(bool TF){
     if (TF) {
         Flags = Flags | 0b0000000100000000;
     }
@@ -283,14 +283,14 @@ void CPUregisters::updateTF(bool TF){
 
 }
 
-bool CPUregisters::fetchTF(){
+bool CPU8086::fetchTF(){
     if ((Flags & 0b0000000100000000) == 0b0000000100000000){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updateIF(bool IF){
+void CPU8086::updateIF(bool IF){
     if (IF) {
         Flags = Flags | 0b0000001000000000;
     }
@@ -300,14 +300,14 @@ void CPUregisters::updateIF(bool IF){
 
 }
 
-bool CPUregisters::fetchIF(){
+bool CPU8086::fetchIF(){
     if ((Flags & 0b0000001000000000) == 0b0000001000000000){
         return true;
     }
     return false;
 }
 
-void CPUregisters::updateDF(bool DF){
+void CPU8086::updateDF(bool DF){
     if (DF) {
         Flags = Flags | 0b0000010000000000;
     }
@@ -317,19 +317,19 @@ void CPUregisters::updateDF(bool DF){
 
 }
 
-bool CPUregisters::fetchDF(){
+bool CPU8086::fetchDF(){
     if ((Flags & 0b0000010000000000) == 0b0000010000000000){
         return true;
     }
     return false;
 }
 
-uint16_t CPUregisters::fetchFlags(){
+uint16_t CPU8086::fetchFlags(){
     return Flags;
 }
 
 // Implementing Reset
-void CPUregisters::RESET(){
+void CPU8086::RESET(){
     Flags = 0b1111000000101010;
     uint16_t resetState = 0x0000;
     uint16_t resetStateNot = 0xFFFF;
@@ -348,7 +348,7 @@ void CPUregisters::RESET(){
 }
 
 // Implementing 8086 ISA Instructions
-void CPUregisters::AAA(){
+void CPU8086::AAA(){
     if ((AXbytes.AL > 9 || fetchAF() == true)){
         AXbytes.AL = AXbytes.AL + 6;
         AXbytes.AH = AXbytes.AH + 1;
@@ -362,7 +362,7 @@ void CPUregisters::AAA(){
     AXbytes.AL = AXbytes.AL & 0b00001111;
 }
 
-void CPUregisters::AAD(){
+void CPU8086::AAD(){
     AXbytes.AL = (AXbytes.AH * 10) + AXbytes.AL;
     AXbytes.AH = 0;
     if (AXbytes.AL == 0){
@@ -382,7 +382,7 @@ void CPUregisters::AAD(){
     }
 }
 
-void CPUregisters::AAM(){
+void CPU8086::AAM(){
     AXbytes.AH = (AXbytes.AL / 10);
     AXbytes.AH = (AXbytes.AH % 10);
     if (AXbytes.AL == 0){
@@ -405,7 +405,7 @@ void CPUregisters::AAM(){
 
 int main() {
     MEMfile bankA;
-    CPUregisters CPUA;
+    CPU8086 CPUA;
     std::cout<<"Starting Flags: "<<std::bitset<16>(CPUA.fetchFlags())<<std::endl;
     std::cout<<"AAA Test"<<std::endl;
     uint16_t Rs = 0xAB12;
