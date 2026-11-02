@@ -183,6 +183,14 @@ class CPU8086 {
         void AAD();
         void AAM();
 
+        // 8086 Data Transfer Instructions
+        void XCHG(uint16_t destination, uint16_t source); // Switches the contents of the source & destination (byte or word) operands. When used with LOCK prefix, XCHG can set and test a semaphore that controls access to a resource shared by multiple processors.
+        void MOV(uint16_t destination, uint16_t source); // Transfers a byte or a word from a source to a destination.
+        void PUSH(uint16_t source); // SP = SP - 2 ; data[SP] = source
+        void POP(uint16_t destination); // SP = SP + 2 ; destination = data[SP]
+        void XLAT(); // Replaces a byte in the AL reg. with a byte from a user-coded translation table where BX points to the beginning of the table.
+
+
 };
 
 #endif
